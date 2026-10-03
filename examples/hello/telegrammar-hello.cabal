@@ -1,0 +1,24 @@
+cabal-version:   3.0
+name:            telegrammar-hello
+version:         0.1.0.0
+synopsis:        The smallest telegrammar bot: it greets whoever writes to it
+description:
+  A single-file bot built on telegrammar. It long-polls getUpdates and
+  answers every message with a greeting that names its sender. The same file
+  holds the smallest HTTP transport a planned request needs.
+
+build-type:      Simple
+
+executable telegrammar-hello
+  main-is:          Main.hs
+
+  build-depends:
+    , aeson
+    , base
+    , http-client
+    , http-client-tls
+    , telegrammar
+    , text
+
+  default-language: GHC2021
+  ghc-options:      -Wall -Werror=ambiguous-fields

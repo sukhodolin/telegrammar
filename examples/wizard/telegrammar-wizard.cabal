@@ -1,0 +1,63 @@
+cabal-version:   3.0
+name:            telegrammar-wizard
+version:         0.1.0.0
+synopsis:        An in-chat Telegram surface wizard built on telegrammar
+description:
+  An in-chat wizard that drives a library of Telegram surface probes from
+  inline buttons, on telegrammar. Every Bot API call goes through a
+  generated request record, the checked planner, and the generated result
+  codec, so this example is the live consumer that proves telegrammar
+  against the real Bot API. The HTTP transport telegrammar deliberately does
+  not ship lives here, in Wizard.Transport, together with
+  the JSON-lines wire log of every exchange.
+
+build-type:      Simple
+
+executable telegrammar-wizard
+  main-is:          Main.hs
+  hs-source-dirs:   app, src
+
+  other-modules:
+    Wizard.Answers
+    Wizard.Bot
+    Wizard.Call
+    Wizard.Card
+    Wizard.Exhibit
+    Wizard.Loop
+    Wizard.Rooms
+    Wizard.Scenarios.Chrome
+    Wizard.Scenarios.Keyboards
+    Wizard.Scenarios.Rich
+    Wizard.Scenarios.RichButtons
+    Wizard.Transport
+    Wizard.Types
+
+  build-depends:
+    , aeson
+    , base
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , http-client
+    , http-client-tls
+    , http-types
+    , text
+    , telegrammar
+    , time
+    , transformers
+    , unix
+
+  default-language: GHC2021
+
+  -- The third flag is what makes the scenario-word, datum and slot tables total.
+  ghc-options:
+    -Wall -Werror=ambiguous-fields -Werror=incomplete-patterns
+
+  default-extensions:
+    DerivingStrategies
+    DuplicateRecordFields
+    LambdaCase
+    NoFieldSelectors
+    OverloadedRecordDot
+    OverloadedStrings
